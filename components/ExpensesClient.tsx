@@ -6,7 +6,17 @@ import { ExpenseRow } from "./ExpenseRow";
 import { formatINR } from "@/lib/format";
 import { useMemo, useState } from "react";
 
-export function ExpensesClient({ initial }: { initial: Expense[] }) {
+export function ExpensesClient({
+  initial,
+  profileName,
+  profileIcon,
+  profileColor,
+}: {
+  initial: Expense[];
+  profileName: string;
+  profileIcon: string;
+  profileColor: string;
+}) {
   const [category, setCategory] = useState<string>("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -80,6 +90,19 @@ export function ExpensesClient({ initial }: { initial: Expense[] }) {
 
   return (
     <div className="space-y-4">
+      <div
+        className="flex items-center gap-3 rounded-xl border bg-white p-4 shadow-sm"
+        style={{ borderLeftColor: profileColor, borderLeftWidth: 5 }}
+      >
+        <div className="text-2xl">{profileIcon}</div>
+        <div>
+          <div className="text-xs uppercase tracking-wide text-slate-500">
+            Showing entries for
+          </div>
+          <div className="text-base font-semibold text-slate-900">{profileName}</div>
+        </div>
+      </div>
+
       <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Input

@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
-export function AddExpenseForm() {
+export function AddExpenseForm({ profileId }: { profileId: string }) {
   const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
   const [submitting, setSubmitting] = useState(false);
@@ -54,6 +54,7 @@ export function AddExpenseForm() {
       amount: amt,
       payment_mode: paymentMode || null,
       notes: notes.trim() || null,
+      profile_id: profileId,
     });
     setSubmitting(false);
 
